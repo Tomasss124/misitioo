@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlético Horizonte — Sitio oficial</title>
+<meta name="description" content="Sitio oficial del Atlético Horizonte. Próximo partido, plantilla, resultados, clasificación y entradas.">
+<meta name="theme-color" content="#0A0E14">
+<meta name="color-scheme" content="dark">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230A0E14'/%3E%3Ctext x='16' y='23' font-family='Impact,sans-serif' font-size='20' text-anchor='middle' fill='%23C8FF3D'%3EH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================================
+     ATLÉTICO HORIZONTE — Tema estadio nocturno
+     ========================================================= */
+  :root{
+    color-scheme: dark;
+    --bg:#0A0E14;
+    --surface:#111722;
+    --surface-2:#1A2230;
+    --lime:#C8FF3D;
+    --lime-dim:#A8D92E;
+    --red:#E63946;
+    --white:#F5F7FA;
+    --muted:#8A93A6;
+    --line:rgba(255,255,255,0.08);
+    --line-strong:rgba(255,255,255,0.16);
+    --display:"Bebas Neue", Impact, "Arial Narrow", sans-serif;
+    --body:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, monospace;
+    --wrap:1240px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:80px;
+    -webkit-text-size-adjust:100%;
+    text-size-adjust:100%;
+  }
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--lime); color:#0A0E14; }
+  img, svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul, ol{ list-style:none; }
+  button{ font:inherit; color:inherit; }
+
+  .wrap{
+    max-width:var(--wrap);
+    margin-inline:auto;
+    padding-inline:clamp(20px, 4vw, 40px);
+  }
+
+  h1,h2,h3{
+    font-family:var(--display);
+    font-weight:400;
+    letter-spacing:0.01em;
+    line-height:0.92;
+    text-transform:uppercase;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--lime);
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:2px;
+    background:var(--lime);
+  }
+
+  /* =========================================================
+     HEADER
+     ========================================================= */
+  .site-header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(10,14,20,0.85);
+    -webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px;
+    padding-block:16px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--display);
+    font-size:26px;
+    letter-spacing:0.04em;
+    line-height:1;
+    color:var(--white);
+  }
+  .logo-shield{
+    width:34px; height:38px;
+    flex:0 0 auto;
+  }
+  .logo-shield path{ fill:var(--lime); }
+  .logo-shield text{
+    font-family:var(--display);
+    font-size:22px;
+    fill:#0A0E14;
+  }
+  .logo small{
+    display:block;
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:0.24em;
+    color:var(--muted);
+    margin-top:3px;
+    font-weight:400;
+  }
+
+  .nav-links{
+    display:flex; gap:30px;
+    font-family:var(--body);
+    font-size:13.5px;
+    font-weight:500;
+    letter-spacing:0.04em;
+    color:var(--muted);
+  }
+  .nav-links a{
+    position:relative;
+    padding:6px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0;
+    height:2px;
+    background:var(--lime);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a[aria-current]{ color:var(--white); }
+  .nav-links a:hover::after,
+  .nav-links a[aria-current]::after{ transform:scaleX(1); }
+
+  .nav-actions{ display:flex; align-items:center; gap:12px; }
+  .btn-tickets{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--lime);
+    color:#0A0E14;
+    font-family:var(--body);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:12px 22px;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .btn-tickets:hover{ background:var(--lime-dim); transform:translateY(-1px); }
+
+  .menu-toggle{
+    display:none;
+    width:44px; height:44px;
+    background:none;
+    border:1px solid var(--line-strong);
+    color:var(--white);
+    font-size:18px;
+    cursor:pointer;
+    align-items:center; justify-content:center;
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero{
+    position:relative;
+    padding:clamp(56px, 8vw, 104px) 0 clamp(56px, 7vw, 96px);
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-200px; right:-180px;
+    width:640px; height:640px;
+    background:radial-gradient(circle, rgba(200,255,61,0.16), transparent 65%);
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:60px 60px;
+    -webkit-mask-image: radial-gradient(circle at 30% 40%, #000, transparent 75%);
+    mask-image: radial-gradient(circle at 30% 40%, #000, transparent 75%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.25fr 0.75fr;
+    gap:clamp(32px, 5vw, 72px);
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(64px, 11vw, 150px);
+    letter-spacing:-0.01em;
+    line-height:0.86;
+    margin:22px 0 26px;
+    text-wrap:balance;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--lime);
+  }
+  .hero p.lede{
+    font-size:clamp(15.5px, 1.5vw, 18px);
+    color:var(--muted);
+    max-width:46ch;
+    line-height:1.65;
+    margin-bottom:34px;
+  }
+  .hero-actions{
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--lime); color:#0A0E14;
+    font-size:13px; font-weight:700;
+    letter-spacing:0.05em; text-transform:uppercase;
+    padding:16px 28px;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .btn-primary:hover{ background:var(--lime-dim); transform:translateY(-1px); }
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--line-strong);
+    color:var(--white);
+    font-size:13px; font-weight:600;
+    letter-spacing:0.05em; text-transform:uppercase;
+    padding:16px 28px;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .btn-ghost:hover{ background:var(--surface-2); border-color:var(--white); }
+
+  /* tarjeta próximo partido */
+  .next-match{
+    background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    border:1px solid var(--line-strong);
+    padding:clamp(22px, 3vw, 30px);
+    position:relative;
+    overflow:hidden;
+  }
+  .next-match::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--lime), transparent);
+  }
+  .nm-top{
+    display:flex; justify-content:space-between; align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+  }
+  .nm-comp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .nm-status{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#0A0E14;
+    background:var(--lime);
+    padding:5px 10px;
+  }
+  .nm-status .pulse{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:#0A0E14;
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.25; } }
+
+  .nm-teams{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .nm-team{
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    text-align:center;
+  }
+  .nm-team span{
+    font-family:var(--display);
+    font-size:20px;
+    letter-spacing:0.03em;
+    line-height:1;
+    color:var(--white);
+  }
+  .crest{
+    width:56px; height:62px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--display);
+    font-size:30px;
+    line-height:1;
+    clip-path: polygon(50% 0, 100% 14%, 100% 62%, 50% 100%, 0 62%, 0 14%);
+  }
+  .crest-home{ background:var(--lime); color:#0A0E14; }
+  .crest-away{ background:var(--red); color:#fff; }
+
+  .nm-vs{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .nm-vs .label{
+    font-family:var(--display);
+    font-size:26px;
+    color:var(--muted);
+    line-height:1;
+  }
+  .nm-vs .date{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  .countdown{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:8px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin-bottom:20px;
+  }
+  .cd-item{
+    text-align:center;
+  }
+  .cd-num{
+    display:block;
+    font-family:var(--mono);
+    font-size:clamp(22px, 3vw, 30px);
+    font-weight:700;
+    line-height:1;
+    color:var(--lime);
+    letter-spacing:-0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl{
+    display:block;
+    margin-top:8px;
+    font-family:var(--mono);
+    font-size:9.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .nm-cta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width:100%;
+    background:var(--lime);
+    color:#0A0E14;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:14px 20px;
+    transition:background .2s ease;
+  }
+  .nm-cta:hover{ background:var(--lime-dim); }
+
+  /* =========================================================
+     SECTION STRUCTURE
+     ========================================================= */
+  section{ padding:clamp(64px, 8vw, 104px) 0; }
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:48px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-size:clamp(40px, 5vw, 64px);
+    letter-spacing:-0.01em;
+    line-height:0.92;
+  }
+  .section-head p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:44ch;
+    line-height:1.6;
+  }
+
+  /* =========================================================
+     PARTIDOS
+     ========================================================= */
+  .tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+  }
+  .tab{
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--muted);
+    font-family:var(--body);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:11px 20px;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .tab:hover{ color:var(--white); border-color:var(--white); }
+  .tab.active{
+    background:var(--lime);
+    border-color:var(--lime);
+    color:#0A0E14;
+  }
+
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; }
+
+  .match-list{ display:grid; gap:8px; }
+  .match-row{
+    display:grid;
+    grid-template-columns:80px 1fr 160px;
+    align-items:center;
+    gap:20px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:18px 22px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .match-row:hover{ border-color:var(--line-strong); background:var(--surface-2); }
+
+  .mr-date{
+    text-align:center;
+    border-right:1px solid var(--line);
+    padding-right:16px;
+  }
+  .mr-day{
+    display:block;
+    font-family:var(--display);
+    font-size:32px;
+    line-height:1;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .mr-mon{
+    display:block;
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:2px;
+  }
+
+  .mr-teams{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:16px;
+  }
+  .mr-team{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--body);
+    font-size:15px;
+    font-weight:600;
+    color:var(--white);
+  }
+  .mr-team.away{ justify-content:flex-end; text-align:right; }
+  .mr-team .chip{
+    width:26px; height:26px;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-family:var(--display);
+    font-size:14px;
+    flex:0 0 auto;
+    clip-path: polygon(50% 0, 100% 14%, 100% 62%, 50% 100%, 0 62%, 0 14%);
+  }
+  .chip.lime{ background:var(--lime); color:#0A0E14; }
+  .chip.red{ background:var(--red); color:#fff; }
+  .chip.blue{ background:#2E6BFF; color:#fff; }
+  .chip.white{ background:var(--white); color:#0A0E14; }
+  .chip.gray{ background:var(--surface-2); color:var(--white); border:1px solid var(--line-strong); }
+
+  .mr-score{
+    font-family:var(--display);
+    font-size:26px;
+    letter-spacing:0.05em;
+    color:var(--lime);
+    min-width:56px;
+    text-align:center;
+    padding:4px 0;
+    line-height:1;
+  }
+  .mr-score.dim{
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.1em;
+  }
+
+  .mr-info{
+    display:flex; flex-direction:column; align-items:flex-end; gap:4px;
+    text-align:right;
+  }
+  .mr-comp{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .mr-venue{
+    font-family:var(--body);
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+  /* =========================================================
+     PLANTILLA
+     ========================================================= */
+  .filters{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .filter{
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--muted);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:9px 16px;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .filter:hover{ color:var(--white); border-color:var(--white); }
+  .filter.active{ background:var(--white); border-color:var(--white); color:#0A0E14; }
+
+  .squad{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:16px;
+  }
+  .player{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:24px 20px 20px;
+    overflow:hidden;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .player:hover{ border-color:var(--lime); transform:translateY(-3px); }
+  .player::before{
+    content:attr(data-number);
+    position:absolute;
+    top:-16px; right:-4px;
+    font-family:var(--display);
+    font-size:120px;
+    line-height:1;
+    color:rgba(255,255,255,0.045);
+    pointer-events:none;
+    letter-spacing:-0.02em;
+  }
+  .player-num{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    color:var(--lime);
+    border:1px solid rgba(200,255,61,0.35);
+    padding:3px 8px;
+    margin-bottom:16px;
+  }
+  .player-name{
+    font-family:var(--display);
+    font-size:26px;
+    line-height:0.96;
+    letter-spacing:0.02em;
+    color:var(--white);
+    margin-bottom:6px;
+    position:relative;
+  }
+  .player-pos{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    position:relative;
+  }
+
+  /* =========================================================
+     CLASIFICACIÓN
+     ========================================================= */
+  .standings{
+    border:1px solid var(--line);
+    background:var(--surface);
+    overflow-x:auto;
+  }
+  .standings table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:640px;
+  }
+  .standings th{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:center;
+    padding:16px 14px;
+    border-bottom:1px solid var(--line-strong);
+    background:var(--surface-2);
+  }
+  .standings th.team{ text-align:left; }
+  .standings td{
+    padding:16px 14px;
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    font-family:var(--body);
+    font-size:14px;
+    color:var(--white);
+  }
+  .standings tr:last-child td{ border-bottom:0; }
+  .standings td.team{
+    text-align:left;
+    display:flex; align-items:center; gap:12px;
+    font-weight:600;
+    font-size:14.5px;
+  }
+  .standings td.pos{
+    font-family:var(--mono);
+    font-weight:700;
+    color:var(--muted);
+    width:52px;
+  }
+  .standings td.pts{
+    font-family:var(--display);
+    font-size:20px;
+    letter-spacing:0.03em;
+    color:var(--white);
+  }
+  .standings tr.us{
+    background:linear-gradient(90deg, rgba(200,255,61,0.09), transparent 70%);
+  }
+  .standings tr.us td.team{ color:var(--lime); }
+  .standings tr.us td.pos{ color:var(--lime); }
+  .standings tr.us td.pts{ color:var(--lime); }
+  .zone-bar{
+    display:inline-block;
+    width:3px; height:20px;
+    margin-right:8px;
+    vertical-align:middle;
+  }
+  .standings tr.ucl .zone-bar{ background:var(--lime); }
+  .standings tr.uel .zone-bar{ background:#2E6BFF; }
+
+  /* =========================================================
+     NOTICIAS
+     ========================================================= */
+  .news-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  .news-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .news-card:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
+  .news-tag{
+    align-self:flex-start;
+    font-family:var(--mono);
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#0A0E14;
+    background:var(--lime);
+    padding:4px 10px;
+  }
+  .news-card h3{
+    font-family:var(--display);
+    font-size:26px;
+    line-height:0.98;
+    letter-spacing:0.02em;
+    color:var(--white);
+  }
+  .news-card p{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--muted);
+    flex:1;
+  }
+  .news-date{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+
+  /* =========================================================
+     CTA ABONO
+     ========================================================= */
+  .cta-band{
+    background:var(--lime);
+    color:#0A0E14;
+    padding:clamp(56px, 7vw, 88px) 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band::before{
+    content:"HORIZONTE";
+    position:absolute;
+    right:-40px; top:50%;
+    transform:translateY(-50%);
+    font-family:var(--display);
+    font-size:clamp(120px, 22vw, 260px);
+    line-height:1;
+    color:rgba(10,14,20,0.06);
+    letter-spacing:-0.01em;
+    pointer-events:none;
+    white-space:nowrap;
+  }
+  .cta-grid{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .cta-copy h2{
+    font-size:clamp(40px, 5.5vw, 72px);
+    line-height:0.9;
+    color:#0A0E14;
+    max-width:14ch;
+  }
+  .cta-copy p{
+    margin-top:18px;
+    font-size:16px;
+    color:rgba(10,14,20,0.72);
+    max-width:44ch;
+    line-height:1.6;
+  }
+  .cta-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn-dark{
+    display:inline-flex; align-items:center; gap:10px;
+    background:#0A0E14; color:var(--lime);
+    font-size:13px; font-weight:700;
+    letter-spacing:0.05em; text-transform:uppercase;
+    padding:18px 32px;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn-dark:hover{ transform:translateY(-2px); }
+  .btn-outline-dark{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1.5px solid #0A0E14; color:#0A0E14;
+    font-size:13px; font-weight:700;
+    letter-spacing:0.05em; text-transform:uppercase;
+    padding:18px 32px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn-outline-dark:hover{ background:#0A0E14; color:var(--lime); }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  .site-footer{
+    background:var(--bg);
+    padding:64px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 1fr;
+    gap:32px;
+    padding-bottom:44px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+  }
+  .foot-brand .logo{ margin-bottom:16px; }
+  .foot-brand p{
+    color:var(--muted);
+    font-size:13.5px;
+    line-height:1.6;
+    max-width:34ch;
+  }
+  .foot-title{
+    font-family:var(--mono);
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .foot-col ul li{ margin-bottom:12px; }
+  .foot-col a{
+    color:var(--white);
+    font-size:14px;
+    transition:color .2s ease;
+  }
+  .foot-col a:hover{ color:var(--lime); }
+  .foot-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.04em;
+    color:var(--muted);
+  }
+
+  /* =========================================================
+     REVEAL
+     ========================================================= */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.01ms !important;
+      scroll-behavior:auto !important;
+    }
+    .reveal{ opacity:1; transform:none; }
+  }
+
+  /* =========================================================
+     RESPONSIVE
+     ========================================================= */
+  @media (max-width:980px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .next-match{ max-width:520px; }
+    .news-grid{ grid-template-columns:1fr 1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .match-row{ grid-template-columns:64px 1fr; }
+    .mr-info{ grid-column:1 / -1; align-items:flex-start; padding-top:8px; border-top:1px dashed var(--line); }
+    .mr-date{ border-right:0; padding-right:0; text-align:left; }
+    .mr-teams{ gap:10px; }
+  }
+
+  @media (max-width:640px){
+    .nav{ padding-block:14px; }
+    .btn-tickets{ display:none; }
+    .menu-toggle{ display:flex; }
+
+    .nav-links{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--surface);
+      border-bottom:1px solid var(--line);
+      padding:6px 20px 14px;
+      font-size:15px;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links li + li{ border-top:1px solid var(--line); }
+    .nav-links a{ display:block; padding:14px 0; }
+    .nav-links a::after{ display:none; }
+
+    .hero h1{ font-size:clamp(54px, 15vw, 96px); }
+    .nm-teams{ gap:8px; }
+    .crest{ width:48px; height:52px; font-size:24px; }
+
+    .match-row{ grid-template-columns:1fr; gap:14px; padding:16px; }
+    .mr-date{ display:flex; gap:6px; align-items:baseline; }
+    .mr-day{ font-size:22px; }
+    .mr-mon{ margin-top:0; }
+    .mr-teams{ gap:8px; }
+    .mr-team{ font-size:13.5px; }
+    .mr-score{ font-size:22px; min-width:44px; }
+
+    .news-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; }
+    .foot-bottom{ flex-direction:column; }
+    .cta-grid{ flex-direction:column; align-items:flex-start; }
+    .cta-actions{ width:100%; }
+    .btn-dark, .btn-outline-dark{ flex:1; justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Principal">
+    <a href="#inicio" class="logo" aria-label="Atlético Horizonte, ir al inicio">
+      <svg class="logo-shield" viewBox="0 0 34 38" aria-hidden="true">
+        <path d="M17 1 L32 5 V20 C32 30 17 37 17 37 C17 37 2 30 2 20 V5 Z"/>
+        <text x="17" y="25" text-anchor="middle">H</text>
+      </svg>
+      <div>
+        Horizonte
+        <small>Club Atlético</small>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#partidos">Partidos</a></li>
+      <li><a href="#plantilla">Plantilla</a></li>
+      <li><a href="#clasificacion">Clasificación</a></li>
+      <li><a href="#noticias">Noticias</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#abono" class="btn-tickets">Entradas <span aria-hidden="true">→</span></a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Temporada 2025/26 · Liga Profesional</span>
+        <h1 id="hero-title">Juega<br><em>con</em> nosotros</h1>
+        <p class="lede">El club que nació en la cima. Sigue cada partido, conoce a la plantilla y asegura tu lugar en la tribuna antes de que se agoten las entradas.</p>
+        <div class="hero-actions">
+          <a href="#abono" class="btn-primary">Hazte abonado <span aria-hidden="true">→</span></a>
+          <a href="#partidos" class="btn-ghost">Ver partidos</a>
+        </div>
+      </div>
+
+      <aside class="next-match" aria-label="Próximo partido">
+        <div class="nm-top">
+          <span class="nm-comp">Liga Profesional · J13</span>
+          <span class="nm-status"><span class="pulse" aria-hidden="true"></span>Próximo</span>
+        </div>
+
+        <div class="nm-teams">
+          <div class="nm-team">
+            <div class="crest crest-home" aria-hidden="true">H</div>
+            <span>Horizonte</span>
+          </div>
+          <div class="nm-vs">
+            <span class="label">VS</span>
+            <span class="date" id="match-date">SÁB · 20:30</span>
+          </div>
+          <div class="nm-team">
+            <div class="crest crest-away" aria-hidden="true">A</div>
+            <span>Aurora FC</span>
+          </div>
+        </div>
+
+        <div class="countdown" id="countdown" aria-label="Cuenta atrás para el próximo partido">
+          <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-lbl">Días</span></div>
+          <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-lbl">Horas</span></div>
+          <div class="cd-item"><span class="cd-num" id="cd-mins">00</span><span class="cd-lbl">Min</span></div>
+          <div class="cd-item"><span class="cd-num" id="cd-secs">00</span><span class="cd-lbl">Seg</span></div>
+        </div>
+
+        <a href="#abono" class="nm-cta">Comprar entradas <span aria-hidden="true">→</span></a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= PARTIDOS ================= -->
+  <section id="partidos" aria-labelledby="partidos-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Calendario</span>
+          <h2 id="partidos-title" style="margin-top:14px;">Partidos</h2>
+        </div>
+        <p>Próximos encuentros y los últimos resultados del primer equipo en la temporada.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Tipo de partidos">
+        <button class="tab active" data-tab="proximos" role="tab" aria-selected="true">Próximos</button>
+        <button class="tab" data-tab="resultados" role="tab" aria-selected="false">Resultados</button>
+      </div>
+
+      <!-- PRÓXIMOS -->
+      <div class="tab-panel active" id="tab-proximos" role="tabpanel">
+        <div class="match-list">
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">15</span>
+              <span class="mr-mon">NOV</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip lime">H</span>Horizonte</div>
+              <span class="mr-score dim">VS</span>
+              <div class="mr-team away">Aurora FC<span class="chip red">A</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Liga · J13</span>
+              <span class="mr-venue">Estadio Cumbre · 20:30</span>
+            </div>
+          </article>
+
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">22</span>
+              <span class="mr-mon">NOV</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip blue">R</span>Real Bruma</div>
+              <span class="mr-score dim">VS</span>
+              <div class="mr-team away">Horizonte<span class="chip lime">H</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Liga · J14</span>
+              <span class="mr-venue">Estadio Niebla · 18:00</span>
+            </div>
+          </article>
+
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">29</span>
+              <span class="mr-mon">NOV</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip lime">H</span>Horizonte</div>
+              <span class="mr-score dim">VS</span>
+              <div class="mr-team away">Deportivo Alba<span class="chip white">D</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Copa · Octavos</span>
+              <span class="mr-venue">Estadio Cumbre · 21:00</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="tab-panel" id="tab-resultados" role="tabpanel">
+        <div class="match-list">
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">08</span>
+              <span class="mr-mon">NOV</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip lime">H</span>Horizonte</div>
+              <span class="mr-score">2 – 1</span>
+              <div class="mr-team away">Sporting Cumbre<span class="chip gray">S</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Liga · J12</span>
+              <span class="mr-venue">Victoria · Goles: De Luca, Vidal</span>
+            </div>
+          </article>
+
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">01</span>
+              <span class="mr-mon">NOV</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip red">F</span>FC Mirador</div>
+              <span class="mr-score">0 – 3</span>
+              <div class="mr-team away">Horizonte<span class="chip lime">H</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Liga · J11</span>
+              <span class="mr-venue">Victoria · Hat-trick de Watanabe</span>
+            </div>
+          </article>
+
+          <article class="match-row">
+            <div class="mr-date">
+              <span class="mr-day">25</span>
+              <span class="mr-mon">OCT</span>
+            </div>
+            <div class="mr-teams">
+              <div class="mr-team"><span class="chip lime">H</span>Horizonte</div>
+              <span class="mr-score">1 – 1</span>
+              <div class="mr-team away">Unión Andina<span class="chip blue">U</span></div>
+            </div>
+            <div class="mr-info">
+              <span class="mr-comp">Liga · J10</span>
+              <span class="mr-venue">Empate · Gol: Aguirre</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLANTILLA ================= -->
+  <section id="plantilla" aria-labelledby="plantilla-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Primer equipo</span>
+          <h2 id="plantilla-title" style="margin-top:14px;">Plantilla</h2>
+        </div>
+        <p>Los jugadores que defienden la camiseta esta temporada. Filtra por línea.</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filtrar por posición">
+        <button class="filter active" data-filter="all">Todos</button>
+        <button class="filter" data-filter="portero">Porteros</button>
+        <button class="filter" data-filter="defensa">Defensas</button>
+        <button class="filter" data-filter="medio">Medios</button>
+        <button class="filter" data-filter="delantero">Delanteros</button>
+      </div>
+
+      <div class="squad reveal" id="squad">
+        <article class="player" data-pos="portero" data-number="1">
+          <span class="player-num">#1</span>
+          <h3 class="player-name">Mateo<br>Rivas</h3>
+          <span class="player-pos">Portero · 28 años</span>
+        </article>
+        <article class="player" data-pos="portero" data-number="13">
+          <span class="player-num">#13</span>
+          <h3 class="player-name">Aarón<br>Soto</h3>
+          <span class="player-pos">Portero · 23 años</span>
+        </article>
+        <article class="player" data-pos="defensa" data-number="2">
+          <span class="player-num">#2</span>
+          <h3 class="player-name">Lucas<br>Ferrán</h3>
+          <span class="player-pos">Lateral derecho · 26 años</span>
+        </article>
+        <article class="player" data-pos="defensa" data-number="3">
+          <span class="player-num">#3</span>
+          <h3 class="player-name">Samir<br>Ndiaye</h3>
+          <span class="player-pos">Lateral izquierdo · 24 años</span>
+        </article>
+        <article class="player" data-pos="defensa" data-number="4">
+          <span class="player-num">#4</span>
+          <h3 class="player-name">Daniel<br>Corso</h3>
+          <span class="player-pos">Central · 30 años</span>
+        </article>
+        <article class="player" data-pos="defensa" data-number="5">
+          <span class="player-num">#5</span>
+          <h3 class="player-name">Iván<br>Beltrán</h3>
+          <span class="player-pos">Central · 27 años</span>
+        </article>
+        <article class="player" data-pos="medio" data-number="6">
+          <span class="player-num">#6</span>
+          <h3 class="player-name">Bruno<br>Salas</h3>
+          <span class="player-pos">Mediocentro · 29 años</span>
+        </article>
+        <article class="player" data-pos="medio" data-number="8">
+          <span class="player-num">#8</span>
+          <h3 class="player-name">Thiago<br>Mendes</h3>
+          <span class="player-pos">Interior · 22 años</span>
+        </article>
+        <article class="player" data-pos="medio" data-number="10">
+          <span class="player-num">#10</span>
+          <h3 class="player-name">Nico<br>Aguirre</h3>
+          <span class="player-pos">Enganche · 25 años</span>
+        </article>
+        <article class="player" data-pos="delantero" data-number="7">
+          <span class="player-num">#7</span>
+          <h3 class="player-name">Kai<br>Watanabe</h3>
+          <span class="player-pos">Extremo · 24 años</span>
+        </article>
+        <article class="player" data-pos="delantero" data-number="9">
+          <span class="player-num">#9</span>
+          <h3 class="player-name">Marco<br>De Luca</h3>
+          <span class="player-pos">Delantero centro · 31 años</span>
+        </article>
+        <article class="player" data-pos="delantero" data-number="11">
+          <span class="player-num">#11</span>
+          <h3 class="player-name">Enzo<br>Vidal</h3>
+          <span class="player-pos">Extremo · 21 años</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CLASIFICACIÓN ================= -->
+  <section id="clasificacion" aria-labelledby="clasificacion-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Liga Profesional</span>
+          <h2 id="clasificacion-title" style="margin-top:14px;">Clasificación</h2>
+        </div>
+        <p>Jornada 12 de 18. Los dos primeros clasifican a competición continental.</p>
+      </div>
+
+      <div class="standings reveal">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="team">Equipo</th>
+              <th>PJ</th>
+              <th>G</th>
+              <th>E</th>
+              <th>P</th>
+              <th>DG</th>
+              <th>PTS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="us ucl">
+              <td class="pos">1</td>
+              <td class="team"><span class="zone-bar"></span>Atlético Horizonte</td>
+              <td>12</td><td>8</td><td>3</td><td>1</td><td>+15</td><td class="pts">27</td>
+            </tr>
+            <tr class="ucl">
+              <td class="pos">2</td>
+              <td class="team"><span class="zone-bar"></span>Aurora FC</td>
+              <td>12</td><td>7</td><td>3</td><td>2</td><td>+11</td><td class="pts">24</td>
+            </tr>
+            <tr class="uel">
+              <td class="pos">3</td>
+              <td class="team"><span class="zone-bar"></span>Real Bruma</td>
+              <td>12</td><td>6</td><td>4</td><td>2</td><td>+8</td><td class="pts">22</td>
+            </tr>
+            <tr>
+              <td class="pos">4</td>
+              <td class="team">Sporting Cumbre</td>
+              <td>12</td><td>6</td><td>2</td><td>4</td><td>+5</td><td class="pts">20</td>
+            </tr>
+            <tr>
+              <td class="pos">5</td>
+              <td class="team">FC Mirador</td>
+              <td>12</td><td>5</td><td>3</td><td>4</td><td>+2</td><td class="pts">18</td>
+            </tr>
+            <tr>
+              <td class="pos">6</td>
+              <td class="team">Unión Andina</td>
+              <td>12</td><td>4</td><td>4</td><td>4</td><td>0</td><td class="pts">16</td>
+            </tr>
+            <tr>
+              <td class="pos">7</td>
+              <td class="team">Deportivo Alba</td>
+              <td>12</td><td>3</td><td>3</td><td>6</td><td>-6</td><td class="pts">12</td>
+            </tr>
+            <tr>
+              <td class="pos">8</td>
+              <td class="team">Atlético Valle</td>
+              <td>12</td><td>2</td><td>2</td><td>8</td><td>-12</td><td class="pts">8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NOTICIAS ================= -->
+  <section id="noticias" aria-labelledby="noticias-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">Sala de prensa</span>
+          <h2 id="noticias-title" style="margin-top:14px;">Noticias</h2>
+        </div>
+        <p>Lo último del club, la actualidad de la plantilla y las historias del vestuario.</p>
+      </div>
+
+      <div class="news-grid reveal">
+        <article class="news-card">
+          <span class="news-tag">Fichajes</span>
+          <h3>Horizonte cierra el fichaje de Thiago Mendes</h3>
+          <p>El mediocampista de 22 años llega procedente del Aurora FC con un contrato de cuatro temporadas y será presentado este viernes en el Estadio Cumbre.</p>
+          <span class="news-date">12 · Nov · 2025</span>
+        </article>
+
+        <article class="news-card">
+          <span class="news-tag">Primer equipo</span>
+          <h3>Tres victorias seguidas y liderato en solitario</h3>
+          <p>El equipo de Rivas encadena su mejor racha de la temporada y se afianza en la cima de la clasificación a falta de seis jornadas.</p>
+          <span class="news-date">09 · Nov · 2025</span>
+        </article>
+
+        <article class="news-card">
+          <span class="news-tag">Cantera</span>
+          <h3>Enzo Vidal, debut soñado con el primer equipo</h3>
+          <p>El extremo de 21 años, formado en nuestra academia, marcó en su primer partido oficial como titular ante el FC Mirador.</p>
+          <span class="news-date">02 · Nov · 2025</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ABONO ================= -->
+  <section class="cta-band" id="abono" aria-labelledby="cta-title">
+    <div class="wrap cta-grid">
+      <div class="cta-copy">
+        <span class="eyebrow" style="color:#0A0E14;">Abono 2025/26</span>
+        <h2 id="cta-title" style="margin-top:16px;">Vive cada partido en el Cumbre</h2>
+        <p>Asegura tu asiento para toda la temporada, prioridad en entradas de copa y acceso a los entrenamientos abiertos.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#" class="btn-dark">Hazte abonado <span aria-hidden="true">→</span></a>
+        <a href="#" class="btn-outline-dark">Entradas sueltas</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#inicio" class="logo" aria-label="Atlético Horizonte, ir al inicio">
+          <svg class="logo-shield" viewBox="0 0 34 38" aria-hidden="true">
+            <path d="M17 1 L32 5 V20 C32 30 17 37 17 37 C17 37 2 30 2 20 V5 Z"/>
+            <text x="17" y="25" text-anchor="middle">H</text>
+          </svg>
+          <div>
+            Horizonte
+            <small>Club Atlético</small>
+          </div>
+        </a>
+        <p>Fundado en 1954. El club que creció en la cima. Estadio Cumbre, Andes.</p>
+      </div>
+
+      <nav class="foot-col" aria-labelledby="foot-club">
+        <h2 class="foot-title" id="foot-club">Club</h2>
+        <ul>
+          <li><a href="#plantilla">Plantilla</a></li>
+          <li><a href="#partidos">Calendario</a></li>
+          <li><a href="#clasificacion">Clasificación</a></li>
+          <li><a href="#noticias">Noticias</a></li>
+        </ul>
+      </nav>
+
+      <nav class="foot-col" aria-labelledby="foot-hinchas">
+        <h2 class="foot-title" id="foot-hinchas">Hinchas</h2>
+        <ul>
+          <li><a href="#abono">Abonos</a></li>
+          <li><a href="#">Entradas</a></li>
+          <li><a href="#">Tienda oficial</a></li>
+          <li><a href="#">Peñas</a></li>
+        </ul>
+      </nav>
+
+      <nav class="foot-col" aria-labelledby="foot-club-info">
+        <h2 class="foot-title" id="foot-club-info">Institucional</h2>
+        <ul>
+          <li><a href="#">Historia</a></li>
+          <li><a href="#">Cantera</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Prensa</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Atlético Horizonte. Sitio ficticio de demostración.</span>
+      <span>Estadio Cumbre · Andes</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  const $  = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+
+  /* Año del footer */
+  const yearEl = $('#year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---- Menú móvil ---- */
+  const toggle = $('.menu-toggle');
+  const menu = $('#nav-links');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.textContent = open ? '✕' : '☰';
+  };
+  toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); toggle.focus(); }
+  });
+  window.matchMedia('(min-width: 641px)').addEventListener('change', () => setMenu(false));
+
+  /* ---- Reveal al scroll ---- */
+  const revealEls = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach((el) => obs.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('in'));
+  }
+
+  /* ---- Sección activa en el menú ---- */
+  const navLinks = $$('.nav-links a');
+  if ('IntersectionObserver' in window) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach((a) => {
+          if (a.getAttribute('href') === '#' + e.target.id) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('main > section[id]').forEach((s) => spy.observe(s));
+  }
+
+  /* ---- Pestañas de partidos ---- */
+  const tabs = $$('.tab');
+  const panels = $$('.tab-panel');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+      });
+      panels.forEach((p) => {
+        p.classList.toggle('active', p.id === 'tab-' + target);
+      });
+    });
+  });
+
+  /* ---- Filtro de plantilla ---- */
+  const filters = $$('.filter');
+  const players = $$('.player');
+  filters.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filters.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const pos = btn.dataset.filter;
+      players.forEach((p) => {
+        const show = pos === 'all' || p.dataset.pos === pos;
+        p.style.display = show ? '' : 'none';
+      });
+    });
+  });
+
+  /* ---- Cuenta atrás al próximo partido (sábado 20:30) ---- */
+  function nextMatchDate() {
+    const now = new Date();
+    const d = new Date(now);
+    const target = 6; // sábado
+    let diff = (target - now.getDay() + 7) % 7;
+    if (diff === 0 && now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30)) {
+      diff = 7;
+    }
+    d.setDate(now.getDate() + diff);
+    d.setHours(20, 30, 0, 0);
+    return d;
+  }
+
+  const matchDate = nextMatchDate();
+  const months = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  const dateEl = $('#match-date');
+  if (dateEl) {
+    const dd = String(matchDate.getDate()).padStart(2, '0');
+    dateEl.textContent = `SÁB ${dd} ${months[matchDate.getMonth()]} · 20:30`;
+  }
+
+  const cd = {
+    d: $('#cd-days'),
+    h: $('#cd-hours'),
+    m: $('#cd-mins'),
+    s: $('#cd-secs'),
+  };
+  const pad = (n) => String(n).padStart(2, '0');
+
+  function tick() {
+    const now = new Date();
+    let diff = matchDate - now;
+    if (diff < 0) diff = 0;
+    const totalSec = Math.floor(diff / 1000);
+    const days  = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const mins  = Math.floor((totalSec % 3600) / 60);
+    const secs  = totalSec % 60;
+    cd.d.textContent = pad(days);
+    cd.h.textContent = pad(hours);
+    cd.m.textContent = pad(mins);
+    cd.s.textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>
